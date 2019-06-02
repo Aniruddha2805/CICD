@@ -21,23 +21,33 @@ import bsh.Remote;
 public class TestClass1 {
 
 	public static WebDriver driver;
-	
+
+	 public static final String USERNAME = "aniruddha18";
+	  public static final String AUTOMATE_KEY = "XfG5PqzQdnprsbsDmxYK";
+	  public static final String URL = "https://" + USERNAME + ":" + AUTOMATE_KEY + "@hub-cloud.browserstack.com/wd/hub";
+	  
 	@BeforeMethod
 	public void launchDriver() {
-		DesiredCapabilities dr = null;
-		dr = DesiredCapabilities.chrome();
-		dr.setBrowserName("chrome");
-		dr.setPlatform(Platform.WIN8_1);
-		System.setProperty("webdriver.chrome.driver", "./driver/chromedriver.exe");
-		try {
-			System.out.println("Remote Driver Started");
-			driver = new RemoteWebDriver(new URL("http://192.168.0.106:4444/wd/hub"), dr);
-		} catch (MalformedURLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-		driver.manage().window().fullscreen();
+		
+		DesiredCapabilities caps = new DesiredCapabilities();
+	    caps.setCapability("browser", "Chrome");
+	    caps.setCapability("browser_version", "73.0");
+	    caps.setCapability("os", "Windows");
+	    caps.setCapability("os_version", "8.1");
+	    caps.setCapability("resolution", "1024x768");
+	    caps.setCapability("name", "Bstack-[Java] Sample Test");
+	    caps.setCapability("project", "AutomationProjectE2E");
+	    caps.setCapability("build", "Build1");
+	    caps.setCapability("name", "TestCaseName");
+	    
+			try {
+				driver = new RemoteWebDriver(new URL(URL), caps);
+				driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+				driver.manage().window().fullscreen();
+			} catch (MalformedURLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}   	
 	}
 	
 	@Test
