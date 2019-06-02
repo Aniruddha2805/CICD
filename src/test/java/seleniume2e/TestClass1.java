@@ -30,6 +30,7 @@ public class TestClass1 {
 		dr.setPlatform(Platform.WIN8_1);
 		System.setProperty("webdriver.chrome.driver", "./driver/chromedriver.exe");
 		try {
+			System.out.println("Remote Driver Started");
 			driver = new RemoteWebDriver(new URL("http://192.168.0.106:4444/wd/hub"), dr);
 		} catch (MalformedURLException e) {
 			// TODO Auto-generated catch block
