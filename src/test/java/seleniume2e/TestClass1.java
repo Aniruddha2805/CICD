@@ -41,10 +41,12 @@ public class TestClass1 {
 	    caps.setCapability("name", "TestCaseName");
 	    
 			try {
+				System.setProperty("webdriver.chrome.driver","C:\\Selenium\\Chrome\\chromedriver_win32\\chromedriver.exe");
 				driver = new RemoteWebDriver(new URL(URL), caps);
+				//driver = new ChromeDriver();
 				driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 				driver.manage().window().fullscreen();
-			} catch (MalformedURLException e1) {
+			} catch (Exception e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}   	
